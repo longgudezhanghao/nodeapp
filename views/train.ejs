@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>train</title>
+    <meta charset="UTF-8">
+    <script src="/javascripts/jquery-3.4.1.js"/>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h3>选择图片：</h3>
+选择一个文件上传: <br/>
+<form action="/train" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" size="50"/>
+    <br/>
+    <select id="Select">
+    </select>
+    <br/>
+    <input type="submit" value="转化图片为html"/>
+</form>
+</body>
+
+</html>
