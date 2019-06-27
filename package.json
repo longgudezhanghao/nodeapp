@@ -14,6 +14,7 @@
     "morgan": "~1.9.1",
     "mysql": "^2.17.1",
     "body-parser": "latest",
-    "multer": "latest"
+    "multer": "latest",
+    "express-session": "latest"
   }
 }

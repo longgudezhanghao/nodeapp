@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var multer  = require('multer');
+var session = require('express-session');
 // 拉取依赖　end
 
 //拉取目录中其它ｊｓ文件　begin
@@ -16,7 +17,9 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var realregisterRouter = require('./routes/realregister');
 var trainRouter = require('./routes/train');
+var selectModelId = require('./routes/selectModelId');
 //拉取目录中其它ｊｓ文件　　end
+
 
 var app = express();
 
@@ -24,6 +27,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 // 视图引擎设置
 app.set('view engine', 'ejs');
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ dest: '/tmp/'}).array('image'));
@@ -33,12 +37,32 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'public')));
 
+
+//session的设置
+const hour = 1000 * 60 * 60;
+var sessionOpts = {
+  // 设置密钥
+  secret: 'a cool secret',
+  // Forces the session to be saved back to the session store
+  resave: true,
+  // Forces a session that is "uninitialized" to be saved to the store.
+  saveUninitialized: true,
+  // 设置会话cookie名, 默认是connect.sid
+  key: 'myapp_sid',
+  // If secure is set to true, and you access your site over HTTP, the cookie will not be set.
+  cookie: { maxAge: hour * 2, secure: false }
+}
+app.use(session(sessionOpts))
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login',loginRouter);
 app.use('/register',registerRouter);
 app.use('/realregister',realregisterRouter);
 app.use('/train',trainRouter);
+app.use('/selectModelId',selectModelId);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

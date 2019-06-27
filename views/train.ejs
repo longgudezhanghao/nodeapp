@@ -3,7 +3,7 @@
 <head>
     <title>train</title>
     <meta charset="UTF-8">
-    <script src="/javascripts/jquery-3.4.1.js"/>
+    <script type="text/javascript" src="/javascripts/jquery-3.4.1.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
@@ -12,11 +12,26 @@
 <form action="/train" method="post" enctype="multipart/form-data">
     <input type="file" name="image" size="50"/>
     <br/>
-    <select id="Select">
+    <select name="modelId" id="Select">
     </select>
     <br/>
     <input type="submit" value="转化图片为html"/>
 </form>
 </body>
-
 </html>
+<script>
+    //动态生成下拉框选项
+    $(document).ready(function(){
+        var info = ' ';
+        $.ajax({
+            url:'/selectModelId',
+            type:'get',
+            success:function (data) {
+                $.each(data ,function(index,arr){
+                    info +=" <option value=' "+index+ " '> " + arr['modelId'] + "　模型创建时间　" + arr['data'] +"</option>";
+                });
+                $("#Select").append(info);
+            }
+        });
+    });
+</script>
