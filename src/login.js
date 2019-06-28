@@ -19,6 +19,7 @@ router.get('/', function(req, res, next) {
         const id = rs[0]['id'];
         console.log(id);
 
+        //将ｉｄ通过ｓｅｓｓｉｏｎ储存为全局变量
         var sess = req.session;
         console.log(sess);
         sess.userId = id;
