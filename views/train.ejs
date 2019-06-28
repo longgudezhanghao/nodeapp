@@ -21,14 +21,14 @@
 </html>
 <script>
     //动态生成下拉框选项
-    $(document).ready(function(){
+    $(document).ready(function () {
         var info = ' ';
         $.ajax({
-            url:'/selectModelId',
-            type:'get',
-            success:function (data) {
-                $.each(data ,function(index,arr){
-                    info +=" <option value=' "+index+ " '> " + arr['modelId'] + "　模型创建时间　" + arr['data'] +"</option>";
+            url: '/selectModelId',
+            type: 'get',
+            success: function (data) {
+                $.each(data, function (index, arr) {
+                    info += " <option value= " + arr['modelId'] + "> " + arr['modelId'] + "　模型创建时间　" + arr['data'] + "</option>";
                 });
                 $("#Select").append(info);
             }

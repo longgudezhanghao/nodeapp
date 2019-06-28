@@ -1,4 +1,4 @@
-//routes，路由文件(MVC中的C,controller)
+//src，路由文件(MVC中的C,controller)
 var express = require('express');
 var router = express.Router();
 

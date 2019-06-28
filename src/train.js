@@ -19,11 +19,12 @@ router.post('/', function (req, res) {
                 };
             }
             console.log( response );
-            res.end( JSON.stringify( response ) );
         });
     });
 
+    console.log(req.body.modelId);
 
-})
+});
+
 
 module.exports = router;
